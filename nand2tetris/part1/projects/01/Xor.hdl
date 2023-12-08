@@ -10,6 +10,11 @@ CHIP Xor {
     IN a, b;
     OUT out;
 
+    // A XOR B = ('A AND B) OR (A AND 'B)
     PARTS:
-    //// Replace this comment with your code.
+    Not(in=a, out=notA);
+    Not(in=b, out=notB);
+    And(a=notA, b=b, out=notAandB);
+    And(a=a, b=notB, out=notBanda);
+    Or(a=notAandB, b=notBanda, out=out);
 }
